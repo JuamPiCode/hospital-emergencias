@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Pulso | Emergencias hospitalarias</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <svg class="symbol-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M2 12h5l3-7 4 14 3-7h5"/></symbol>
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M9 6h12M9 12h12M9 18h12M3 6h1M3 12h1M3 18h1"/></symbol>
+    <symbol id="i-user-plus" viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M2 21v-2a5 5 0 0 1 5-5h4a5 5 0 0 1 5 5v2m3-13v6m-3-3h6"/></symbol>
+    <symbol id="i-history" viewBox="0 0 24 24"><path d="M6 3h11a2 2 0 0 1 2 2v16H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2ZM4 17h15m-9-8h4m-2-2v4"/></symbol>
+    <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><path d="M3 21v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3m2-17a3 3 0 0 1 0 6m1 4a4 4 0 0 1 3 4v3"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9m-8 12a2 2 0 0 0 4 0"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4 2.8 20h18.4L12 4Zm0 6v4m0 3h.01"/></symbol>
+    <symbol id="i-logout" viewBox="0 0 24 24"><path d="M10 4H5v16h5m3-12 4 4-4 4m-3-4h10"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4m8-4v4"/></symbol>
+  </svg>
+  <section id="login" class="login" hidden>
+    <div class="login-intro">
+      <div class="brand"><span class="brand-icon"><svg class="icon"><use href="#i-pulse"/></svg></span><span>Pulso<small>Emergencias hospitalarias</small></span></div>
+      <div class="login-copy"><span class="prototype">Prototipo académico</span><h1>Gestión de emergencias hospitalarias</h1><p>Registro de ingresos, seguimiento de la atención e historial de pacientes.</p></div>
+    </div>
+    <div class="login-main">
+      <form id="login-form" class="login-form">
+        <h2>Iniciar sesión</h2><p>Usa una cuenta ficticia del personal hospitalario.</p>
+        <label for="username">Usuario</label><input id="username" name="username" required autocomplete="username" maxlength="30" placeholder="Ej. admin">
+        <label for="password">Contraseña</label><input id="password" name="password" type="password" required autocomplete="current-password" maxlength="50">
+        <p id="login-error" class="form-error" role="alert" hidden></p>
+        <button class="button primary" type="submit">Ingresar al sistema</button>
+        <div class="demo"><strong>Cuentas de prueba</strong><div class="demo-accounts"><button type="button" data-demo="admin">Administrador</button><button type="button" data-demo="medico">Médico</button><button type="button" data-demo="recepcion">Recepcionista</button></div></div>
+      </form>
+    </div>
+  </section>
+  <div id="app" class="app" hidden>
+    <button id="scrim" class="scrim" type="button" aria-label="Cerrar navegación" hidden></button>
+    <aside id="sidebar" class="sidebar">
+      <div class="brand"><span class="brand-icon"><svg class="icon"><use href="#i-pulse"/></svg></span><span>Pulso<small>Emergencias hospitalarias</small></span></div>
+      <nav aria-label="Navegación principal">
+        <a href="#dashboard" data-page="dashboard"><svg class="icon"><use href="#i-grid"/></svg> Panel general</a>
+        <a href="#emergencias" data-page="emergencias"><svg class="icon"><use href="#i-list"/></svg> Cola de emergencias</a>
+        <a href="#registro" data-page="registro"><svg class="icon"><use href="#i-user-plus"/></svg> Registrar paciente</a>
+        <a href="#historial" data-page="historial"><svg class="icon"><use href="#i-history"/></svg> Historial médico</a>
+      </nav>
+      <div class="sidebar-footer"><span class="prototype">Prototipo académico</span><small>Entorno con datos ficticios</small></div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar">
+        <div class="topbar-left"><button id="menu-button" type="button" class="icon-button menu-button" aria-label="Abrir navegación" aria-controls="sidebar" aria-expanded="false"><svg class="icon"><use href="#i-menu"/></svg></button><span id="breadcrumb"></span></div>
+        <div class="topbar-actions">
+          <div class="popover-anchor">
+            <button id="notifications-button" type="button" class="icon-button bell-button" aria-label="Notificaciones" aria-controls="notifications" aria-expanded="false"><svg class="icon"><use href="#i-bell"/></svg><span id="notification-dot" hidden></span></button>
+            <section id="notifications" class="popover notification-popover" aria-label="Notificaciones" hidden></section>
+          </div>
+          <div class="popover-anchor">
+            <button id="profile-button" type="button" class="profile-button" aria-controls="profile-popover" aria-expanded="false"><span id="avatar" class="avatar"></span><span class="profile-text"><strong id="profile-name"></strong><small id="profile-role"></small></span><svg class="icon"><use href="#i-chevron"/></svg></button>
+            <div id="profile-popover" class="popover profile-popover" hidden><p id="profile-summary"></p><button id="logout-button" type="button" class="button secondary"><svg class="icon"><use href="#i-logout"/></svg>Cerrar sesión</button></div>
+          </div>
+        </div>
+      </header>
+      <main id="view" class="content" tabindex="-1"></main>
+    </div>
+  </div>
+  <dialog id="detail-dialog" aria-labelledby="dialog-title"></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <noscript>Activa JavaScript para utilizar Pulso.</noscript>
+</body>
+</html>
